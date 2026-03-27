@@ -1,58 +1,49 @@
 # Claude Peak Hours
 
-Know when to go all out and when to conserve tokens. Two tools — pick what fits your workflow:
-
-1. **macOS Menu Bar App** — always-visible indicator with popover details
-2. **Claude Code Status Line** — peak/off-peak status right in your terminal (cross-platform)
+Know when to go all out and when to conserve tokens.
 
 During peak hours (weekdays 5 AM – 11 AM PT), Anthropic applies stricter session limits. These tools give you a clear indicator so you never get surprised by throttling.
 
-## Features
+Two tools — pick what fits your workflow:
 
-### macOS Menu Bar App
-- **Menu bar indicator** — green circle + "Full power" or red circle + "Restricted"
-- **Warning mode** — orange indicator 15 minutes before a status change
+---
+
+## 1. macOS Menu Bar App
+
+Always-visible indicator next to your clock.
+
+### Features
+- **Menu bar indicator** — 🟢 Full power / 🔴 Restricted / 🟡 Warning
 - **Popover details** — click for countdown timer, restriction hours in your local timezone
-- **Notifications** — optional macOS alerts when peak hours start/end
+- **Notifications** — optional macOS alerts when peak hours start/end and 15 min before
 - **Launch at login** — optional auto-start
 - **Localized** — Polish and English, auto-detected from system language
-- **Lightweight** — native Swift + SwiftUI, ~46 MB RAM, no dependencies
+- **Lightweight** — native Swift + SwiftUI, no dependencies
 
-### Claude Code Status Line
-- **Terminal status bar** — 🟢 OK 6h 34m / 🔴 PEAK 2h 15m
-- **Countdown** — time until next status change
-- **Context bar** — shows context window usage with color coding
-- **Cross-platform** — works on macOS, Linux, Windows (WSL/Git Bash)
-- **Requires** — `jq` and Claude Code
-
-## Requirements
-
-### Menu Bar App
+### Requirements
 - macOS 13 (Ventura) or later
 - Xcode Command Line Tools (`xcode-select --install`)
 
-### Status Line
-- Claude Code CLI
-- `jq` (`brew install jq` / `apt install jq`)
-
-## Install
-
-### One-liner (recommended)
+### Install
 
 ```bash
 curl -sL https://raw.githubusercontent.com/studiogo/claude-peak-hours/main/install.sh | bash
 ```
 
-Downloads the latest release, installs to `/Applications`, and starts the app.
+### Uninstall
 
-### Download manually
+```bash
+rm -rf "/Applications/Claude Peak Hours.app"
+```
 
+### Alternative install methods
+
+**Download manually:**
 1. Go to [Releases](https://github.com/studiogo/claude-peak-hours/releases)
 2. Download `Claude-Peak-Hours-v*.zip`
 3. Unzip and move `Claude Peak Hours.app` to `/Applications`
 
-### Build from source
-
+**Build from source:**
 ```bash
 git clone https://github.com/studiogo/claude-peak-hours.git
 cd claude-peak-hours
@@ -60,9 +51,58 @@ cd claude-peak-hours
 cp -r "build/Claude Peak Hours.app" /Applications/
 ```
 
+---
+
+## 2. Claude Code Status Line
+
+Peak/off-peak status with countdown right in your Claude Code terminal. Works on **macOS, Linux, and Windows** (WSL/Git Bash).
+
+```
+Claude │ ████████░░░░░░░░░░░░ 40% │ 🟢 OK 6h 34m
+Claude │ ██████████████░░░░░░ 72% │ 🔴 PEAK 2h 15m
+```
+
+### Features
+- **🟢 OK 6h 34m** — off-peak, countdown to next peak
+- **🔴 PEAK 2h 15m** — peak hours, countdown to end
+- **Context bar** — shows context window usage with color coding (green/yellow/red)
+- **Compact warning** — ⚠ COMPACT when context > 80%
+
+### Requirements
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI
+- `jq` — JSON parser
+  - macOS: `brew install jq`
+  - Linux: `sudo apt install jq`
+  - Windows: `choco install jq`
+
+### Install
+
+```bash
+curl -sL https://raw.githubusercontent.com/studiogo/claude-peak-hours/main/statusline-install.sh | bash
+```
+
+This will:
+1. Download the status line script to `~/.claude/statusline.sh`
+2. Back up your existing statusline (if any) to `~/.claude/statusline.sh.backup`
+3. Add `statusLine` config to `~/.claude/settings.json`
+4. Restart Claude Code to see it
+
+### Uninstall
+
+```bash
+curl -sL https://raw.githubusercontent.com/studiogo/claude-peak-hours/main/statusline-uninstall.sh | bash
+```
+
+This will:
+1. Remove the statusline script
+2. Restore your previous statusline from backup (if any)
+3. Remove `statusLine` from `settings.json`
+
+---
+
 ## Peak Hours Schedule
 
-Based on [Anthropic's announcement](https://www.anthropic.com):
+Based on [Anthropic's announcement](https://support.anthropic.com/en/articles/9646069-usage-limits-for-claude-ai):
 
 | | Peak | Off-Peak |
 |---|---|---|
@@ -71,23 +111,7 @@ Based on [Anthropic's announcement](https://www.anthropic.com):
 | **CET** | 14:00–20:00 | All other times |
 | **Effect** | Faster session limit usage | Normal session limits |
 
-The app auto-converts to your local timezone.
-
-## Install Claude Code Status Line
-
-```bash
-# 1. Download the script
-curl -sL https://raw.githubusercontent.com/studiogo/claude-peak-hours/main/claude-code-statusline.sh -o ~/.claude/statusline.sh
-chmod +x ~/.claude/statusline.sh
-
-# 2. Add to Claude Code settings (~/.claude/settings.json)
-# If you don't have settings.json yet:
-echo '{ "statusLine": { "type": "command", "command": "~/.claude/statusline.sh" } }' > ~/.claude/settings.json
-
-# If you already have settings.json, add the statusLine key manually
-```
-
-Or merge with your existing status line script — the peak hours section is clearly marked in the file.
+Both tools auto-convert to your local timezone.
 
 ## How It Works
 
