@@ -1,49 +1,49 @@
 # Claude Peak Hours
 
-Know when to go all out and when to conserve tokens.
+Wiedz, kiedy korzystać z Claude'a na full, a kiedy oszczędzać tokeny.
 
-During peak hours (weekdays 5 AM – 11 AM PT), Anthropic applies stricter session limits. These tools give you a clear indicator so you never get surprised by throttling.
+W godzinach peak (dni robocze 5:00–11:00 PT / 14:00–20:00 CET) Anthropic stosuje ostrzejsze limity sesji. Te narzędzia dają Ci wyraźny wskaźnik, żebyś nigdy nie został zaskoczony throttlingiem.
 
-Two tools — pick what fits your workflow:
+Dwa narzędzia — wybierz to, które pasuje do Twojego flow:
 
 ---
 
-## 1. macOS Menu Bar App
+## 1. Aplikacja macOS Menu Bar
 
-Always-visible indicator next to your clock.
+Zawsze widoczny wskaźnik obok zegarka.
 
-### Features
-- **Menu bar indicator** — 🟢 Full power / 🔴 Restricted / 🟡 Warning
-- **Popover details** — click for countdown timer, restriction hours in your local timezone
-- **Notifications** — optional macOS alerts when peak hours start/end and 15 min before
-- **Launch at login** — optional auto-start
-- **Localized** — Polish and English, auto-detected from system language
-- **Lightweight** — native Swift + SwiftUI, no dependencies
+### Funkcje
+- **Wskaźnik w menu barze** — 🟢 Pełna moc / 🔴 Ograniczenia / 🟡 Ostrzeżenie
+- **Popover ze szczegółami** — kliknij, żeby zobaczyć odliczanie, godziny ograniczeń w Twojej strefie czasowej
+- **Powiadomienia** — opcjonalne alerty macOS na start/koniec peak i 15 min przed zmianą
+- **Autostart** — opcjonalne uruchamianie przy starcie systemu
+- **Lokalizacja** — polski i angielski, automatycznie wykrywany z języka systemu
+- **Lekka** — natywny Swift + SwiftUI, zero zależności
 
-### Requirements
-- macOS 13 (Ventura) or later
+### Wymagania
+- macOS 13 (Ventura) lub nowszy
 - Xcode Command Line Tools (`xcode-select --install`)
 
-### Install
+### Instalacja
 
 ```bash
 curl -sL https://raw.githubusercontent.com/studiogo/claude-peak-hours/main/install.sh | bash
 ```
 
-### Uninstall
+### Odinstalowanie
 
 ```bash
 rm -rf "/Applications/Claude Peak Hours.app"
 ```
 
-### Alternative install methods
+### Alternatywne metody instalacji
 
-**Download manually:**
-1. Go to [Releases](https://github.com/studiogo/claude-peak-hours/releases)
-2. Download `Claude-Peak-Hours-v*.zip`
-3. Unzip and move `Claude Peak Hours.app` to `/Applications`
+**Pobierz ręcznie:**
+1. Wejdź w [Releases](https://github.com/studiogo/claude-peak-hours/releases)
+2. Pobierz `Claude-Peak-Hours-v*.zip`
+3. Rozpakuj i przenieś `Claude Peak Hours.app` do `/Applications`
 
-**Build from source:**
+**Zbuduj ze źródeł:**
 ```bash
 git clone https://github.com/studiogo/claude-peak-hours.git
 cd claude-peak-hours
@@ -53,79 +53,79 @@ cp -r "build/Claude Peak Hours.app" /Applications/
 
 ---
 
-## 2. Claude Code Status Line
+## 2. Status Line dla Claude Code
 
-Peak/off-peak status with countdown right in your Claude Code terminal. Works on **macOS, Linux, and Windows** (WSL/Git Bash).
+Status peak/off-peak z odliczaniem w terminalu Claude Code. Działa na **macOS, Linux i Windows**.
 
 ```
 Claude │ ████████░░░░░░░░░░░░ 40% │ 🟢 OK 6h 34m
 Claude │ ██████████████░░░░░░ 72% │ 🔴 PEAK 2h 15m
 ```
 
-### Features
-- **🟢 OK 6h 34m** — off-peak, countdown to next peak
-- **🔴 PEAK 2h 15m** — peak hours, countdown to end
-- **Context bar** — shows context window usage with color coding (green/yellow/red)
-- **Compact warning** — ⚠ COMPACT when context > 80%
+### Funkcje
+- **🟢 OK 6h 34m** — off-peak, odliczanie do następnego peak
+- **🔴 PEAK 2h 15m** — godziny ograniczeń, odliczanie do końca
+- **Pasek kontekstu** — zużycie okna kontekstowego z kolorami (zielony/żółty/czerwony)
+- **Ostrzeżenie** — ⚠ COMPACT gdy kontekst > 80%
 
-### Requirements
+### Wymagania
 - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI
 - **macOS / Linux**: `jq` (`brew install jq` / `sudo apt install jq`)
-- **Windows**: PowerShell 5.1+ (built-in)
+- **Windows**: PowerShell 5.1+ (wbudowany)
 
-### Install — macOS / Linux
+### Instalacja — macOS / Linux
 
 ```bash
 curl -sL https://raw.githubusercontent.com/studiogo/claude-peak-hours/main/statusline-install.sh | bash
 ```
 
-### Install — Windows (PowerShell)
+### Instalacja — Windows (PowerShell)
 
 ```powershell
 irm https://raw.githubusercontent.com/studiogo/claude-peak-hours/main/statusline-install.ps1 | iex
 ```
 
-The installer:
-1. Downloads the peak-hours helper to `~/.claude/`
-2. Adds peak hours segment to your existing statusline (doesn't overwrite it)
-3. Configures `settings.json` if needed
+Instalator:
+1. Pobiera helper peak-hours do `~/.claude/`
+2. Dodaje segment peak hours do Twojego istniejącego statusline (nie nadpisuje go)
+3. Konfiguruje `settings.json` jeśli trzeba
 
-### Uninstall — macOS / Linux
+### Odinstalowanie — macOS / Linux
 
 ```bash
 curl -sL https://raw.githubusercontent.com/studiogo/claude-peak-hours/main/statusline-uninstall.sh | bash
 ```
 
-### Uninstall — Windows (PowerShell)
+### Odinstalowanie — Windows (PowerShell)
 
 ```powershell
 irm https://raw.githubusercontent.com/studiogo/claude-peak-hours/main/statusline-uninstall.ps1 | iex
 ```
 
-The uninstaller removes **only** the peak hours segment — your existing statusline stays intact.
+Uninstalator usuwa **tylko** segment peak hours — reszta Twojego statusline zostaje nienaruszona.
 
 ---
 
-## Peak Hours Schedule
+## Harmonogram Peak Hours
 
-Based on [Anthropic's announcement](https://support.anthropic.com/en/articles/9646069-usage-limits-for-claude-ai):
+Na podstawie [ogłoszenia Anthropic](https://support.anthropic.com/en/articles/9646069-usage-limits-for-claude-ai):
 
 | | Peak | Off-Peak |
 |---|---|---|
-| **When** | Weekdays 5:00–11:00 AM PT | Evenings, nights, weekends |
-| **PT** | 5:00–11:00 | All other times |
-| **CET** | 14:00–20:00 | All other times |
-| **Effect** | Faster session limit usage | Normal session limits |
+| **Kiedy** | Dni robocze 5:00–11:00 PT | Wieczory, noce, weekendy |
+| **PT** | 5:00–11:00 | Reszta czasu |
+| **CET** | 14:00–20:00 | Reszta czasu |
+| **Efekt** | Szybsze zużywanie limitów sesji | Normalne limity sesji |
 
-Both tools auto-convert to your local timezone.
+Oba narzędzia automatycznie przeliczają na Twoją strefę czasową.
 
-## How It Works
+## Jak to działa
 
-No API calls, no network requests. Both tools simply check the current time against the known peak hours schedule (weekdays 5–11 AM Pacific Time).
+Zero zapytań do API, zero ruchu sieciowego. Oba narzędzia sprawdzają aktualny czas względem znanego harmonogramu peak hours (dni robocze 5–11 rano czasu pacyficznego).
 
-- **Menu bar app** — updates every 30 seconds
-- **Status line** — updates after each Claude Code response
+- **Aplikacja menu bar** — odświeża co 30 sekund
+- **Status line** — odświeża po każdej odpowiedzi Claude Code
 
-## License
+## Licencja
 
 MIT
