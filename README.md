@@ -23,22 +23,28 @@ During peak hours (weekdays 5 AM – 11 AM PT), Anthropic applies stricter sessi
 
 ## Install
 
+### One-liner (recommended)
+
+```bash
+curl -sL https://raw.githubusercontent.com/studiogo/claude-peak-hours/main/install.sh | bash
+```
+
+Downloads the latest release, installs to `/Applications`, and starts the app.
+
+### Download manually
+
+1. Go to [Releases](https://github.com/studiogo/claude-peak-hours/releases)
+2. Download `Claude-Peak-Hours-v*.zip`
+3. Unzip and move `Claude Peak Hours.app` to `/Applications`
+
 ### Build from source
 
 ```bash
 git clone https://github.com/studiogo/claude-peak-hours.git
 cd claude-peak-hours
-chmod +x build.sh
 ./build.sh
+cp -r "build/Claude Peak Hours.app" /Applications/
 ```
-
-Then either:
-- Run directly: `open "build/Claude Peak Hours.app"`
-- Install to Applications: `cp -r "build/Claude Peak Hours.app" /Applications/`
-
-### Download release
-
-Check [Releases](https://github.com/studiogo/claude-peak-hours/releases) for pre-built `.app` bundles.
 
 ## Peak Hours Schedule
 
